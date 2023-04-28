@@ -1,9 +1,14 @@
 # phelma_miniprojet_analog_2023
 
-## Équipe
+## Projet réalisé par
 
 * EL HADI, Asmae
 * SABIÁ PEREIRA CARPES, Victor
+
+## Projet encadré par
+
+* DZAHINI, Daniel
+* RARBI, Fatah-Ellah
 
 Ce github contient tous les fichiers de support utilisés pour préparer le rapport final pour la discipline mini-projet analogique du deuxième année du programme Systèmes Électroniques Intégrés - Phelma.
 
