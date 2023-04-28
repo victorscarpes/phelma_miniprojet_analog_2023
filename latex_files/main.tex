@@ -222,9 +222,9 @@ Le but de ce projet est de concevoir un préamplificateur de charge bas bruit. C
 \subsection{Cahier des Charges et Spécifications Imposés}
 
 \begin{itemize}
-    \item Le taux de comptage minimal est de \sis{50}{\nano\second}. En effet, pour deux impulsions consécutives qui sont séparées d'au moins \sis{50}{\nano\second}, le circuit doit être capable de distinguer les deux. C'est à dire que cette durée doit être suffisante pour se charger et se décharger. 
+    \item Le taux de comptage minimal est de \sis{50}{\nano\second}. En effet, pour deux impulsions consécutives qui sont séparées d'au moins \sis{50}{\nano\second}, le circuit doit être capable de distinguer les deux. C'est à dire que cette durée doit être suffisante pour le système pour se charger et se décharger. 
 
-    \item La dynamique en entrée est jusqu'à \sis{1}{\pico\coulomb}. Nous avons choisit que le courant d'entrée soit des impulsions triangulaires de durée égale à \sis{2}{\nano\second}. Donc cette dynamique maximale en entrée correspond à une impulsion de courant de valeur de crête maximale égale à \sis{1}{\milli\ampere}.\endnote{
+    \item La dynamique en entrée est jusqu'à \sis{1}{\pico\coulomb}. Nous avons choisi que le courant d'entrée soit des impulsions triangulaires de durée égale à \sis{2}{\nano\second}. Donc cette dynamique maximale en entrée correspond à une impulsion de courant de valeur de crête maximale égale à \sis{1}{\milli\ampere}.\endnote{
     
     Il est possible de montrer que, pour une impulsion triangulaire de courant avec des temps de montée et de descente égaux et une durée $T_{pulse}$, la charge totale fournie est donnée par $Q_{in}=\frac{1}{2}I_{in}T_{pulse}$. Cette relation va être utilisée pour convertir entre le courant et la charge à l'entrée.
     
@@ -234,7 +234,7 @@ Le but de ce projet est de concevoir un préamplificateur de charge bas bruit. C
 
     \item Le circuit doit consommer au maximum \sis{2}{\milli\watt}.
 
-    \item Les pixels silicium du détecteur sont de \sis{20}{\milli\meter\squared}. Et nous avons choisit une épaisseur de \sis{470}{\micro\meter}. Ce qui donne une capacité du détecteur de \sis{4.5}{\pico\farad}. 
+    \item Les pixels silicium du détecteur sont de \sis{20}{\milli\meter\squared}. Et nous avons choisi une épaisseur de \sis{470}{\micro\meter}. Ce qui donne une capacité du détecteur de \sis{4.5}{\pico\farad}. 
 
     \item Nous avons choisi une capacité de charge de \sis{80}{\femto\farad}.
     
@@ -280,7 +280,7 @@ Le circuit utilisé est un système de premier ordre comme l'illustre la figure 
 
 \subsection{Topologie}
 
-Le circuit final complet est représenté dans la figure \ref{fig:circuit_complet}. Dans l'amplificateur de tension du circuit final, nous avons trois étages de base. Le premier est une source commune, qui doit présenter le minimum de bruit possible, vu que c'est le primer transistor dans le chemin du signal. Le deuxième est une grille commune, qui constitue avec la source commune un cascode replié, qui fait l'amplification de tension. Et le troisième étage est un suiveur qui sert à diminuer l'impédance de sortie du circuit, et assurer la bonne polarisation en entrée et en sortie du cascode quand l'amplificateur est contre-réactionné. Le dimentionnement de ces trois transistors de base est en annexe.
+Le circuit final complet est représenté dans la figure \ref{fig:circuit_complet}. Dans l'amplificateur de tension du circuit final, nous avons trois étages de base. Le premier est une source commune, qui doit présenter le minimum de bruit possible en entrée, vu que c'est le primer transistor dans le chemin du signal. Le deuxième est une grille commune, qui constitue avec la source commune un cascode replié, qui fait l'amplification de tension. Et le troisième étage est un suiveur qui sert à diminuer l'impédance de sortie du circuit, et assurer la bonne polarisation en entrée et en sortie du cascode quand l'amplificateur est contre-réactionné. Le dimentionnement de ces trois transistors de base est en annexe.
 
 Nous utilisons une source de courant parfaite pour alimenter les miroirs de courant qui polarisent le circuit.
 
@@ -313,7 +313,7 @@ Pour réaliser le feedback, nous utilisons une résistance $R_f$ que nous relion
 
 \subsection{Projet Initiale}
 
-Nous voulons un gain $A$ élevé pour pouvoir simplifier \eqref{eq:transfer} en \eqref{eq:simplified}.
+Nous voulons un gain $A$ élevé pour pouvoir simplifier \eqref{eq:transfer} et la mettre sous la forme de \eqref{eq:simplified}.
 
 \begin{equation}\label{eq:simplified}
     Z_{0}\approx R_f
@@ -323,7 +323,7 @@ Nous voulons un gain $A$ élevé pour pouvoir simplifier \eqref{eq:transfer} en 
     f_c\approx\frac{1}{2\pi R_fC_f}
 \end{equation}
 
-On choisit $R_f=\sis{5}{\kilo\ohm}$ et $C_f=\sis{630}{\femto\farad}$, ce qui nous donne une transimpédance $Z_0\approx\sis{5}{\kilo\ohm}$ et une fréquence de coupure $f_c\approx\sis{50.5}{\mega\hertz}$. Pour commencer la conception de l'amplificateur de tension, nous avons réalisé un dimensionnement initial qui ne respectait pas forcément l'intégralité du cahier de charge. Comme le transistor $M_1$ est celui qui contribue le plus au bruit en entrée, on commence par définir quel $g_m$ on veut pour le transistor. La relation entre le bruit et $g_m$ est exprimée en \eqref{eq:noise_m1}.
+On choisit $R_f=\sis{5}{\kilo\ohm}$ et $C_f=\sis{630}{\femto\farad}$, ce qui nous donne une transimpédance $Z_0\approx\sis{5}{\kilo\ohm}$ et une fréquence de coupure $f_c\approx\sis{50.5}{\mega\hertz}$. Pour commencer la conception de l'amplificateur de tension, nous avons réalisé un dimensionnement initial qui ne respectait pas forcément l'intégralité du cahier des charges. Comme le transistor $M_1$ est celui qui contribue le plus au bruit en entrée, on commence par définir quel $g_m$ on veut pour ce transistor. La relation entre le bruit et $g_m$ est exprimée en \eqref{eq:noise_m1}.
 
 \begin{equation}\label{eq:noise_m1}
     e_{ni}^{RMS}\approx\sqrt{\frac{4kT\gamma_{M1}}{g_{mM1}}}
@@ -331,7 +331,7 @@ On choisit $R_f=\sis{5}{\kilo\ohm}$ et $C_f=\sis{630}{\femto\farad}$, ce qui nou
 
 On choisit un $g_{mM1}$ de l'ordre de $\sis{10}{\milli\siemens}$, ce qui se traduit par un bruit $e_{ni}^{RMS}$ de l'ordre de $\sis{1}{\nano\volt\per\sqrt{\hertz}}$.
 
-Après cela, nous avons mis à l'échelle le transistor $M_2$ pour obtenir un gain global de $\sis{60}{\decibel}$, en utilisant \eqref{eq:gm_m2} et \eqref{eq:cg_gain}.
+Après cela, on s'est mis à l'échelle le transistor $M_2$ pour obtenir un gain global de $\sis{60}{\decibel}$, en utilisant \eqref{eq:gm_m2} et \eqref{eq:cg_gain}.
 
 \begin{equation}\label{eq:gm_m2}
     g_{mM2}=2\sqrt{K_p\frac{W_{M2}}{L_{M2}}I_{DM2}}
@@ -343,15 +343,15 @@ Après cela, nous avons mis à l'échelle le transistor $M_2$ pour obtenir un ga
 
 Comme un suiveur a un gain d'environ $\sis{-2}{\decibel}$, notre amplificateur de tension doit avoir un gain total de $\sis{58}{\decibel}$.
 
-Pour polariser les transistors $M_1$, $M_2$ et $M_3$, on utilise des transistors $B_1$ à $B_8$ configurés en miroirs de courant et source de tension. Nous choisissons $B_1=B_2$ et $B_3=B_4$, tous avec $L=\sis{1}{\micro\meter}$.
+Pour polariser les transistors $M_1$, $M_2$ et $M_3$, on utilise les transistors $B_1$ à $B_8$ configurés en miroirs de courant et source de tension. Nous choisissons $B_1=B_2$ et $B_3=B_4$, avec $L=\sis{1}{\micro\meter}$ pour tous ces transistors.
 
 Pour polariser la grille du transistor $M_2$, nous fixons $W_{B1}=W_{B2}=\sis{400}{\nano\meter}$ et paramétrons $W_{B3}=W_{B4}$ pour déterminer $ V_b$. Pour obtenir $V_b\approx\sis{1}{\volt}$, tension définie pour le dimensionnement de $M_2$, on trouve $W_{B3}=W_{B4}=\sis{500}{\micro\meter}$.
 
 \subsection{Étapes de Validation}
 
-Une fois la conception initiale terminée, nous commençons à vérifier chaque spécification dans le livre de charge. Nous commençons par la stabilité. En effectuant des simulations temporelles et de stabilité, nous avons constaté que le circuit oscillait considérablement. Pour remédier à ce fait, nous plaçons un condensateur $C_y$ entre le cascode replié et le suiveur. Nous arrivons à la valeur $C_y=\sis{10}{\femto\farad}$, que nous implémentons avec 3 condensateurs $\sis{30}{\femto\farad}$ en série.
+Une fois la conception initiale est terminée, nous commençons à vérifier chaque spécification dans le cahier des charges. Nous commençons par la stabilité. En effectuant des simulations temporelles et de stabilité, nous avons constaté que le circuit oscillait considérablement. Pour remédier à ce fait, nous plaçons un condensateur $C_y$ entre le cascode replié et le suiveur. Nous arrivons à la valeur $C_y=\sis{10}{\femto\farad}$, que nous implémentons avec 3 condensateurs $\sis{30}{\femto\farad}$ en série, pour respecter les règles de layout.
 
-Notre circuit est stable, avec un faible bruit d'entrée et un bon gain en boucle ouverte. Le problème maintenant est que le circuit consomme trop. Pour remédier à ce problème, nous paramétrons le courant de polarisation $I_b$ et traçons la puissance consommée en fonction de $I_b$. Nous avons vérifié que pour ne pas dépasser $\sis{2}{\milli\watt}$, nous devons limiter $I_b$ en $\sis{8.8}{\micro\ampere}$.
+Notre circuit est stable, avec un faible bruit d'entrée et un bon gain en boucle ouverte. Le problème maintenant est que le circuit consomme trop. Pour remédier à ce problème, nous paramétrons le courant de polarisation $I_b$ et traçons la puissance consommée en fonction de $I_b$. Nous avons vérifié que pour ne pas dépasser $\sis{2}{\milli\watt}$, nous devons limiter $I_b$ à $\sis{8.8}{\micro\ampere}$.
 
 Comme nous avons diminué les courants de polarisation de $M_1$, $M_2$ et $M_3$, nous avons recalculé le rapport d'aspect de chaque transistor en utilisant \eqref{eq:wl_updater} pour garantir le même $g_m$.
 
@@ -359,13 +359,13 @@ Comme nous avons diminué les courants de polarisation de $M_1$, $M_2$ et $M_3$,
     \frac{W}{L}=\frac{g_m^2}{4K_{n,p}I_D}
 \end{equation}
 
-Au cours du processus de mise en page, nous avons dû modifier la configuration du transistor $M_1$. Pour mieux répartir les composants dans le circuit, nous avons implémenté $M_1$ avec 40 transistors identiques en parallèle. Cette modification est prise en compte dans les simulations de la section \ref{sec:simulations}.
+Au cours du processus du routage de notre layout, nous avons dû modifier la configuration du transistor $M_1$. Pour mieux répartir les composants dans le circuit, nous avons implémenté $M_1$ avec 40 transistors identiques en parallèle. Cette modification est prise en compte dans les simulations de la section \ref{sec:simulations}.
 
 \FloatBarrier
 \newpage
 \section{Résultats de Simulation}\label{sec:simulations}
 
-Pour simuler le circuit, nous avons créé un sous-circuit avec uniquement les composants qui font réellement partie de notre amplificateur. Ce sous-circuit peut être vu dans la figure \ref{fig:csh_final}. Après cela, nous avons créé un symbole pour le sous-circuit que nous avons utilisé dans un circuit de testbench pour exécuter toutes les simulations. Le circuit de testbench est visible sur la figure \ref{fig:sch_bench}.
+Pour simuler le circuit, nous avons créé un sous-circuit avec uniquement les composants qui font réellement partie de notre amplificateur. Ce sous-circuit peut être vu dans la figure \ref{fig:csh_final}. Après cela, nous avons créé un symbole pour le sous-circuit que nous avons utilisé dans un circuit de testbench pour exécuter toutes les simulations. Le circuit de testbench est présenté dans la figure \ref{fig:sch_bench}.
 
 \begin{figure}[htp!]
     \centering
@@ -393,9 +393,9 @@ D'abord, nous effectuons la simulation temporelle pour vérifier que le système
     \centering
 \end{figure}
 
-\subsection{Simulation Temporelle - Diverses Capacités de Capteur}
+\subsection{Simulation Temporelle - Différentes Capacités du Capteur}
 
-Dans cette partie, nous étudions l'effet du changement de la capacité du détecteur sur la réponse du système. Pour cela, nous choisissons trois valeurs différentes de $C_d$, et nous faisons la simulation pour les valeurs extrêmes de l'entrée. La figure \ref{fig:tran_cd_sweep} représente les différents résultats obtenus. Dans cette simulation, nous avons une période de \sis{100}{\nano\second}, pour voir si le système ce stabilise. Nous remarquons que pour $C_d = \sis{18}{\pico\farad}$ le système prend plus que \sis{50}{\nano\second} pour se stabiliser. Mais il se stabilise quand même. Nous remarquons aussi que la dynamique en sortie diminue en augmentant la valeur de $C_d$.
+Dans cette partie, nous étudions l'effet du changement de la capacité du détecteur sur la réponse du système. Pour cela, nous choisissons trois valeurs différentes de $C_d$, et nous faisons la simulation pour les valeurs extrêmes de l'entrée. La figure \ref{fig:tran_cd_sweep} représente les différents résultats obtenus. Dans cette simulation, nous avons une période de \sis{100}{\nano\second}, pour voir si le système ce stabilise. Nous remarquons que pour $C_d = \sis{18}{\pico\farad}$ le système prend un peu plus que \sis{50}{\nano\second} pour se stabiliser. Mais il se stabilise quand même. Nous remarquons aussi que la dynamique en sortie diminue en augmentant la valeur de $C_d$.
 
 \begin{figure}[htp!]
     \centering
@@ -441,7 +441,7 @@ Après vérification du comportement en boucle ouverte du circuit, nous fermons 
 
 \subsection{Densité Spectrale du Bruit}
 
-Nous lançons la simulation \aspas{noise} entre \sis{1}{\hertz} et \sis{10}{\giga\hertz}, et nous traçons la densité spectrale du bruit en entrée. Et nous utilisons cette courbe pour tracer le bruit RMS d'entrée, en passant les données dans un calculateur et on mesurant le bruit intégré en fonction de la fréquence limite supérieure d'intégration. Nous obtenons les résultats présentés dans la figure \ref{fig:input_noise}, qui montrent que le bruit critique correspond à \sis{1000}{\electron} est atteint à partie de la fréquence \sis{227.214}{\mega\hertz}, qui est une valeur très supérieure à notre fréquence équivalente du bruit,\endnote{
+Nous lançons la simulation \aspas{noise} entre \sis{1}{\hertz} et \sis{10}{\giga\hertz}, et nous traçons la densité spectrale du bruit en entrée. Nous utilisons cette courbe pour tracer le bruit RMS d'entrée, en passant les données dans un calculateur et on mesurant le bruit intégré en fonction de la fréquence limite supérieure d'intégration. Nous obtenons les résultats présentés dans la figure \ref{fig:input_noise}, qui montrent que le bruit critique correspond à \sis{1000}{\electron} est atteint à partie de la fréquence \sis{227.214}{\mega\hertz}, qui est une valeur très supérieure à notre fréquence équivalente du bruit,\endnote{
 
 Supposons que nous ayons un système avec une fonction de transfert \eqref{eq:transfer_real}. 
 
@@ -480,7 +480,7 @@ En résolvant \eqref{eq:noise_equation} nous obtenons la relation $f_{eq}=\frac{
 
 Nous avons lancé une simulation temporelle pour plusieurs valeurs d'amplitudes d'entrée (31 valeurs de $I_{in}$), et nous avons tracé la courbe représentative de la valeur de crête de la tension de sortie, en fonction de celle du courant d'entrée. Nous obtenons les résultats représentes dans la figure \ref{fig:lin_test}, qui montre que le système est linéaire.
 
-Nous avons tracé la droite de régression linéaire avec l'équation $V_{out}=aI_{in}+b$ avec $a=\sis{584.499}{\ohm}$ et $b=\sis{524.616}{\milli\volt}$. Nous avons calculé le coefficient de détermination linéaire $r^2=\num{0.99557}$, et c'est une valeur très proche à l'unité, donc on peut dire que le système présente un degré important de linéarité. Mais pour être sûr, nous mesurons la valeur absolue de la différence entre les données et la courbe de régression. Cette valeur est exprimée en pourcentage par rapport à la dynamique en sortie. Nous remarquons que l'erreur maximale est de $\delta_{max}=\num{4.06}\%$. 
+Nous avons tracé la droite de régression linéaire avec l'équation $V_{out}=aI_{in}+b$, et avec $a=\sis{584.499}{\ohm}$ et $b=\sis{524.616}{\milli\volt}$. Nous avons calculé le coefficient de détermination linéaire $r^2=\num{0.99557}$, et c'est une valeur très proche à l'unité, donc on peut dire que le système présente un degré important de linéarité. Mais pour être sûr, nous mesurons la valeur absolue de la différence entre les données et la courbe de régression. Cette valeur est exprimée en pourcentage par rapport à la dynamique en sortie. Nous remarquons que l'erreur maximale est de $\delta_{max}=\num{4.06}\%$. 
 
 
 \begin{figure}[htp!]
@@ -524,7 +524,7 @@ En guise de conclusion, nous pouvons dire que nous avons réussi ce projet, vu q
 
 Ce projet nous a permis d'acquérir des méthodes et des compétences nécessaires pour la conception d'un circuit en prennant en compte son cahier des charges et la durée limitée du projet, et nous a permis de se familiariser avec l'utilisation de l'outil cadence. C'était aussi l'opportunité pour nous de lier entre le cours théoriques (conception des circuits intégrés analogiques, circuits actifs hyperfréquences et optoélectroniques, etc...). En effet, nous avons exploité les relations et les connaissances déjà acquises pour faire la conception, comprendre les problèmes rencontrés, et améliorer le fonctionnement du circuit.
 
-Enfin, nous remercions nos profs encadrements, car ils nous ont beaucoup aidé. Et grâce à leurs explications et à leurs assistances, nous avons pu profiter au maximum de ce projet.
+Enfin, nous remercions nos profs encadrants, car ils nous ont beaucoup aidé. Et grâce à leurs explications et à leurs assistances, nous avons pu profiter au maximum de ce projet.
 
 \FloatBarrier
 \newpage
